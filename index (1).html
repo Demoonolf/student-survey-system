@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College</title>
+   <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .container h2 {
+            text-align: center;
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .container h2 {
+                font-size: 1.5em;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>College</h2>
+        <form action="register.php" method="post">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label>Отчество</label>
+                <input type="text" name="middle_name">
+            </div>
+            <div class="form-group">
+                <label>Номер телефона</label>
+                <input type="tel" name="phone_number" required>
+            </div>
+            <div class="form-group">
+                <label>Группа</label>
+                <input type="text" name="group_name" required>
+            </div>
+            <div class="form-group">
+                <label>Хобби</label>
+                <textarea name="hobbies"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Болезни (если есть)</label>
+                <textarea name="illness"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Адрес</label>
+                <textarea name="address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Сколько часов ехать до колледжа</label>
+                <input type="number" name="travel_time">
+            </div>
+            <div class="form-group">
+                <label>Дата рождения</label>
+                <input type="date" name="birth_date" required>
+            </div>
+            <div class="form-group">
+                <label>Почта</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Имя родителей/опекунов</label>
+                <input type="text" name="parent_name">
+            </div>
+            <div class="form-group">
+                <label>Контактный номер родителей/опекунов</label>
+                <input type="tel" name="parent_phone">
+            </div>
+            <div class="form-group">
+                <label>Дополнительные кружки или секции</label>
+                <textarea name="additional_clubs"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Номер документа</label>
+                <input type="text" name="document_number" required>
+            </div>
+            <div class="form-group">
+                <label>ИИН</label>
+                <input type="text" name="iin" required>
+            </div>
+            <div class="form-group">
+                <label>Статус проживания</label>
+                <select name="living_status" required>
+                    <option value="общежитие">Общежитие</option>
+                    <option value="съёмное">Съёмное</option>
+                    <option value="у родителей">У родителей</option>
+                    <option value="свой дом">Свой дом</option>
+                </select>
+            </div>
+          
+             <div class="form-group">
+        <label>Личные достижения</label>
+        <select name="personal_achievements[]" id="personalAchievements" onchange="toggleInput('personalAchievements', 'personalAchievementsOther')" multiple>
+            <option value="Спортивные">Спортивные</option>
+            <option value="Научные">Научные</option>
+            <option value="Творческие">Творческие</option>
+            <option value="Другие">Другие</option>
+        </select>
+        <input type="text" name="personal_achievements_other" id="personalAchievementsOther" placeholder="Введите другие достижения" style="display:none;">
+    </div>
+
+    <div class="form-group">
+        <label>Владение программными языками</label>
+        <select name="programming_languages[]" id="programmingLanguages" onchange="toggleInput('programmingLanguages', 'programmingLanguagesOther')" multiple>
+            <option value="Python">Python</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Java">Java</option>
+            <option value="C++">C++</option>
+            <option value="C#">C#</option>
+            <option value="PHP">PHP</option>
+            <option value="HTML/CSS">HTML/CSS</option>
+            <option value="Другие">Другие</option>
+        </select>
+        <input type="text" name="programming_languages_other" id="programmingLanguagesOther" placeholder="Введите другие языки программирования" style="display:none;">
+    </div>
+            <div class="form-group">
+                <label>Личные достижения (спортивные. научные. творческие)</label>
+                <textarea name="achievements"></textarea>
+            </div>
+            <div class="form-group">
+    <label>Социальный статус</label>
+    <select name="social_status" required>
+        <option value="" disabled selected>Выберите статус</option>
+        <option value="Многодетная семья">Многодетная семья</option>
+        <option value="Малообеспеченная семья">Малообеспеченная семья</option>
+        <option value="Сирота">Сирота</option>
+        <option value="Потеря одного из родителей">Потеря одного из родителей</option>
+        <option value="Ребёнок-инвалид">Ребёнок-инвалид</option>
+        <option value="Член опекунской семьи">Член опекунской семьи</option>
+        <option value="Дети из приёмной семьи">Дети из приёмной семьи</option>
+        <option value="Беженец или перемещённое лицо">Беженец или перемещённое лицо</option>
+        <option value="Ветеранская семья">Ветеранская семья</option>
+        <option value="Дети одинокого родителя">Дети одинокого родителя</option>
+        <option value="Студенты из сельской местности">Студенты из сельской местности</option>
+        <option value="Без статуса">Без статуса</option>
+    </select>
+</div>
+
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</body>
+</html>
